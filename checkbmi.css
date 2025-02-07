@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0096FF;
+}
+
+.header img {
+    width: 50px;
+}
+
+/* BMI Report */
+.bmi-report h2 {
+    background: #001F3F;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.bmi-box {
+    background: #001F3F;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.bmi-value {
+    color: red;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.bmi-previous {
+    color: #ff5733;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.progress {
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* BMI Chart */
+.bmi-chart img {
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.bmi-chart a {
+    color: #001F3F;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Remarks */
+.remarks {
+    background: #001F3F;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.remarks h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.overweight {
+    color: yellow;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Button */
+.assessment-btn {
+    background: red;
+    color: white;
+    padding: 12px;
+    border: none;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.assessment-btn:hover {
+    background: darkred;
+    transition: 0.3s;
+}

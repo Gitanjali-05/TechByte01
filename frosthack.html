@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>app page</title>
+    <link rel="stylesheet" href="frosthack.css">
+</head>
+<body>
+    <div class="container">
+        <button class="close-btn">&times;</button>
+        <h1>Login</h1>
+        <img src="https://img.freepik.com/premium-vector/cute-man-lifting-dumbbell-fitness-gym-cartoon-vector-icon-illustration-people-sport-icon-isolated_138676-5450.jpg?semt=ais_hybrid" alt="Gym Workout">
+        <form>
+            <div class="input-group">
+                <input type="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Password" required>
+            </div>
+        
+        <button onclick="login()">&#10132;</button>
+
+<script>
+    function login() {
+        window.location.href = "dashboard.html"; // Redirect to another page
+    }
+</script>
+        </form>
+        <div class="links">
+            <br>
+            <a href="#">Forgot Password?</a>
+            <p>Don't have an account? <a href="#">Sign Up</a></p>
+        </div>
+    </div>
+
+</body>
+</html>

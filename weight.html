@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitCare</title>
+    <link rel="stylesheet" href="weight.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="https://pairedcms.imgix.net/https%3A%2F%2Fmedia.graphassets.com%2Foutput%3Dformat%3Ajpg%2FzGpz3HjRROJMw2wAkwZA?ixlib=js-3.8.0&w=1110&s=4cd2f5713b712b4e351faabfc1109e92"
+                    alt="Fitness Icon">
+                <h1><span class="fit">FIT</span><span class="care">CARE</span></h1>
+            </div>
+        </header>
+
+        <div class="remarks">
+            <p>Your Remarks: <span id="remarkshowing"></span></p>
+            <script>
+                let bmiCategory = localStorage.getItem("bmiCategory");
+                document.getElementById("remarkshowing").textContent = bmiCategory || "--";
+            </script>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    let selectedDisease = localStorage.getItem("selectedDisease");
+                    if (selectedDisease) {
+                        document.getElementById("result").innerText = selectedDisease;
+                    } else {
+                        document.getElementById("result").innerText = "No disease selected!";
+                    }
+                });
+            </script>
+            
+            <p id="healthissue">
+                if(Lungs problem && heart problem)
+
+            </p>
+        </div>
+
+        <div class="activities">
+            <h3>Suggested Activities</h3>
+            <div class="activity">
+
+            </div>
+            <div class="activity">
+
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button onclick="goal()">GO FOR MORE GOALS</button>
+            <script>
+                function goal() {
+                    window.location.href = "moregoal.html"; // Redirect to another page
+                }
+            </script>
+            <button onclick="manualGoal">CHOOSE GOALS MANUALLY</button>
+            <script>
+                function goal() {
+                    window.location.href = "manualgoal.html"; // Redirect to another page
+                }
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>
