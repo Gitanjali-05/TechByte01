@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFB6B6;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #FFC0C0;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+header h1 {
+    font-size: 28px;
+    margin: 0;
+}
+
+.fit {
+    color: #0096FF;
+}
+
+.care {
+    color: #00966E;
+}
+
+.remarks {
+    background: #00008B;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 15px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.remarks h2 {
+    color: red;
+    font-size: 20px;
+}
+
+.activities h3 {
+    background: #00008B;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.activity {
+    margin: 10px 0;
+}
+
+.activity img {
+    width: 50px;
+    display: block;
+    margin: 0 auto;
+}
+
+.activity h4 {
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.buttons button {
+    background: #00008B;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    margin: 8px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.buttons button:hover {
+    background: #0046A3;
+}

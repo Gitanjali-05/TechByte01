@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Report - FitCare</title>
+    <link rel="stylesheet" href="checkbmi.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://pairedcms.imgix.net/https%3A%2F%2Fmedia.graphassets.com%2Foutput%3Dformat%3Ajpg%2FzGpz3HjRROJMw2wAkwZA?ixlib=js-3.8.0&w=1110&s=4cd2f5713b712b4e351faabfc1109e92"
+                alt="FitCare Logo">
+            <h1>FITCARE</h1>
+        </div>
+
+        <div class="bmi-report">
+            <h2>Your BMI Report is Ready</h2>
+            <div class="bmi-box">
+                <p>Your BMI is: <span id="bmi-result"></span></p>
+                <p>Category: <span id="bmi-category"></span></p> <!-- Corrected the ID here -->
+            </div>
+        </div>
+
+        <div class="bmi-chart">
+            <img src="https://media.istockphoto.com/id/1312021996/vector/body-mass-index.jpg?s=2048x2048&w=is&k=20&c=r6qR4YmdDxGYNrj9YyzXzVEIl9fbFzM35R3c9WPghW0=" alt="BMI Chart">
+            <p><a onclick="login()" href="#">See the Standard BMI Chart</a></p>
+        </div>
+
+        <script>
+            // This script retrieves the BMI data from localStorage and displays it
+            document.addEventListener("DOMContentLoaded", function () {
+                // Retrieve BMI and category from localStorage
+                let bmiValue = localStorage.getItem("bmiValue");
+                let bmiCategory = localStorage.getItem("bmiCategory");
+
+                // If there's no data in localStorage, display '--'
+                document.getElementById("bmi-result").textContent = bmiValue || "--";
+                document.getElementById("bmi-category").textContent = bmiCategory || "--";
+            });
+
+            // Function to redirect to standard BMI chart page
+            function login() {
+                window.location.href = "standard.html"; // Redirect to another page
+            }
+
+            // Function to redirect for Medical Assessment
+            function goFor() {
+                window.location.href = "medical.html"; // Redirect to medical assessment page
+            }
+        </script>
+
+        <!-- "Go for Medical Assessment" Button -->
+        <button onclick="goFor()" class="assessment-btn">Go for Medical Assessment</button>
+    </div>
+</body>
+
+</html>

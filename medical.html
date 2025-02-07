@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Issues</title>
+    <link rel="stylesheet" href="medical.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Medical Issues</h2>
+        <p class="subtitle">Select if you have any medical history</p>
+        <form>
+            <div id="medicalform">
+                <label><input type="checkbox" id="disease-lungs"> Lungs Problem</label>
+                <label><input type="checkbox" id="disease-heart"> Heart Problem</label>
+                <label><input type="checkbox" id="disease-blood"> Blood Pressure</label>
+                <label><input type="checkbox" id="disease-diabetes"> Diabetes</label>
+                <label><input type="checkbox" id="disease-cholesterol"> Cholesterol</label>
+                <label><input type="checkbox" id="disease-asthma"> Asthma</label>
+                <label><input type="checkbox" id="disease-spondylitis"> Spondylitis</label>
+                <label><input type="checkbox" id="disease-liver"> Liver Problem</label>
+                <label><input type="checkbox" id="disease-motion"> Motion Sickness</label>
+                <label><input type="checkbox" id="disease-gastric"> Gastric Problem</label>
+                <label><input type="checkbox" id="disease-digestion"> Digestion Problem</label>
+                <label><input type="checkbox" id="disease-others"> Others</label>
+            </div>
+            <button type="button" onclick="goToNextPage()" class="continue-btn">Continue</button>
+        </form>
+    </div>
+
+    <script>
+        function goToNextPage() {
+            // Get all the checkboxes
+            const checkboxes = document.querySelectorAll('#medicalform input[type="checkbox"]');
+            let selectedDiseases = [];
+
+            // Loop through checkboxes and get selected ones
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    selectedDiseases.push(checkbox.parentElement.textContent.trim()); // Get disease name
+                }
+            });
+
+            // Check if any disease is selected
+            if (selectedDiseases.length > 0) {
+                // Store the selected diseases in localStorage
+                localStorage.setItem("selectedDiseases", JSON.stringify(selectedDiseases));
+                window.location.replace("weight.html"); // Redirect to the next page
+            } else {
+                alert("Please select at least one disease.");
+            }
+        }
+    </script>
+</body>
+
+</html>

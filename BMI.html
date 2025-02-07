@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="BMI.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>What is your Age?</h2>
+        <input class="inst" type="number" id="age" placeholder="Enter your age">
+
+        <h2>What is your Height?</h2>
+        <input class="inst" type="number" id="height" placeholder="Enter height in cm">
+
+        <h2>What is your Weight?</h2>
+        <input class="inst" type="number" id="weight" placeholder="Enter weight in kg">
+
+        <br>
+        <button onclick="calculateBMI()">Calculate BMI</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let inputs = document.querySelectorAll(".inst");
+
+            // Add 'Enter' key navigation between inputs
+            inputs.forEach((input, index) => {
+                input.addEventListener("keydown", function (event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault(); // Prevent form submission
+                        let nextInput = inputs[index + 1];
+                        if (nextInput) {
+                            nextInput.focus();
+                        }
+                    }
+                });
+            });
+        });
+
+        function calculateBMI() {
+            let age = parseInt(document.getElementById("age").value);
+            let height = parseFloat(document.getElementById("height").value) / 100; // Convert cm to meters
+            let weight = parseFloat(document.getElementById("weight").value);
+
+            // Validation
+            if (!age || !height || !weight || age <= 0 || height <= 0 || weight <= 0) {
+                alert("Please enter valid age, height, and weight.");
+                return;
+            }
+
+            // Calculate BMI
+            let bmi = weight / (height * height);
+            let category = "";
+
+            if (bmi < 18.5) {
+                category = "Underweight";
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+                category = "Normal weight";
+            } else if (bmi >= 25 && bmi < 29.9) {
+                category = "Overweight";
+            } else {
+                category = "Obese";
+            }
+
+            // Store BMI and category in localStorage
+            localStorage.setItem("bmiValue", bmi.toFixed(2));
+            localStorage.setItem("bmiCategory", category);
+
+            // Redirect to results page
+            window.location.href = "checkbmi.html";
+        }
+    </script>
+</body>
+
+</html>
