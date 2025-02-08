@@ -4,36 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Powered Coaching</title>
-    <link rel="stylesheet" href="ai.css">
+    <style>
+        body {
+            background-color: #f7a8a0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .header {
+            background: linear-gradient(to right, brown, purple);
+            color: white;
+            padding: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            display: inline-block;
+            border-radius: 10px;
+            margin: 20px auto;
+        }
+        .button {
+            display: block;
+            width: 250px;
+            background-color: navy;
+            color: white;
+            padding: 12px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-style: italic;
+            font-weight: bold;
+            margin: 10px auto;
+            border: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: darkblue;
+        }
+        .live {
+            background-color: red;
+        }
+        .live:hover {
+            background-color: darkred;
+        }
+    </style>
 </head>
 <body>
+    <div class="header">AI Powered Coaching</div>
 
-    <div class="container">
-        <h2 class="header">AI Powered <span>Coaching</span></h2>
-
-        <div class="options">
-            <button class="exercise-btn"> <i>Basic Exercise</i> <span class="arrow">▶</span> </button>
-            <button class="exercise-btn"> <i>Yoga</i> <span class="arrow">▶</span> </button>
-            <button class="exercise-btn"> <i>Gym</i> <span class="arrow">▶</span> </button>
-        </div>
-
-        <div class="checkbox">
-            <input type="checkbox" id="sportsperson">
-            <label for="sportsperson"><i>I am a Sportsperson</i></label>
-        </div>
-
-        <div class="sports">
-            <h3>Select Your Sport</h3>
-            <ul>
-                <li><input type="radio" name="sport"> <i>Football</i></li>
-                <li><input type="radio" name="sport"> <i>Cricket</i></li>
-                <li><input type="radio" name="sport"> <i>Boxing</i></li>
-                <li><input type="radio" name="sport"> <i>Basketball</i></li>
-                <li><input type="radio" name="sport"> <i>Athlete</i></li>
-                <li><input type="radio" name="sport"> <i>Others</i></li>
-            </ul>
-        </div>
-    </div>
-
+    <button class="button live">Basic Exercise</button>
+    <button class="button live">Yoga</button>
+    <button class="button live">Gym</button>
+    <button class="button live">Breathing Exercise</button>
+    <button class="button live">Sport Specific Training</button>
+    <button class="button live">Live Sessions</button>
 </body>
 </html>

@@ -50,3 +50,18 @@ input {
 .login-btn {
     background: #f08b81;
     border: none;}
+
+.buttonwi{
+        width:100%;
+        justify-content: center;
+        align-items: center;
+}
+.button{
+    background-color: beige;
+    padding: 20px;
+   
+    
+}
+a{
+    text-decoration: none;
+}
