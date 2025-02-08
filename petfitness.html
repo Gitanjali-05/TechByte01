@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Fitness</title>
+    <link rel="stylesheet" href="petfitness.css">
+</head>
+<body>
+
+    <div class="header">PET FITNESS</div>
+
+    <button class="categories">CATEGORIES</button>
+
+    <div class="container">
+        <div class="pet-box">
+            <img src="https://uxwing.com/wp-content/themes/uxwing/download/animals-and-birds/cat-icon.png" alt="Cat">
+            <div class="pet-name"><button onclick="meow()">Cats</button></div>
+        </div>
+        <div class="pet-box">
+            <img src="https://cdn-icons-png.flaticon.com/512/1998/1998627.png" alt="Dog">
+            <div class="pet-name"><button onclick="doggy()">Dogs</button></div>
+        </div>
+        <script>
+            
+            function doggy() {
+                console.log("wait")
+                window.open("dog.html"); 
+            }
+            function meow() {
+                window.location.href = "meow.html"; 
+            }
+        </script>
+        <div class="pet-box">
+            <img src="https://static.thenounproject.com/png/1183753-200.png" alt="Bird">
+            <div class="pet-name"><button onclick="bird()">Birds</button></div>
+        </div>
+        <div class="pet-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgWV7rBYoUglm9TUtuSQaWGtmJ9qTXGCCCJMgMJ9gHp_IPINVhuIffd--13TtSLMrpn5g&usqp=CAU" alt="Rabbit">
+            <div class="pet-name"><button onclick="others()">Small Pets</button> </div>
+        </div>
+        <script>
+             function bird() {
+                window.location.href = "bird.html"; 
+            }
+            function others() {
+                window.location.href = "otherspet.html"; 
+            }
+        </script>
+    </div>
+
+</body>
+</html>

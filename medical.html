@@ -33,22 +33,22 @@
 
     <script>
         function goToNextPage() {
-            // Get all the checkboxes
+           
             const checkboxes = document.querySelectorAll('#medicalform input[type="checkbox"]');
             let selectedDiseases = [];
 
-            // Loop through checkboxes and get selected ones
+           
             checkboxes.forEach(function (checkbox) {
                 if (checkbox.checked) {
-                    selectedDiseases.push(checkbox.parentElement.textContent.trim()); // Get disease name
+                    selectedDiseases.push(checkbox.parentElement.textContent.trim()); 
                 }
             });
 
-            // Check if any disease is selected
+            
             if (selectedDiseases.length > 0) {
-                // Store the selected diseases in localStorage
+               
                 localStorage.setItem("selectedDiseases", JSON.stringify(selectedDiseases));
-                window.location.replace("weight.html"); // Redirect to the next page
+                window.location.replace("weight.html"); 
             } else {
                 alert("Please select at least one disease.");
             }

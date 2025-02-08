@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Health Problems with Nearby Doctors and AI Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #695252;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .health-info {
+            flex: 0.7;
+        }
+
+        .right-sidebar {
+            flex: 0.3;
+            background-color: #f6dcdc;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .disease-block {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .disease-block:hover {
+            background-color: #a11313;
+        }
+
+        .right-sidebar h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .doctor-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .doctor-list li {
+            margin-bottom: 15px;
+        }
+
+        .doctor-chatbot {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .chatbot-box {
+            padding: 10px;
+            border: 1px solid #888585;
+            border-radius: 8px;
+            max-height: 300px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+        }
+
+        .chatbot-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .chatbot-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .chatbot-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive layout for smaller screens */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .right-sidebar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Left side: Health information (diseases) -->
+        <div class="health-info">
+            <h1>Common Cat Health Problems</h1>
+            <div class="disease-block" onclick="toggleDescription('obesity-description')">
+                <h3>Obesity</h3>
+                <div id="obesity-description" class="disease-description">
+                    <p>Symptoms of Obesity in Cats:
+                    <ul>
+                        <li>Excessive weight gain</li>
+                        <li>Difficulty moving or walking</li>
+                        <li>Lack of energy or lethargy</li>
+                        <li>Visible fat deposits, especially around the abdomen</li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+
+            <div class="disease-block" onclick="toggleDescription('dental-description')">
+                <h3>Dental Disease</h3>
+                <div id="dental-description" class="disease-description">
+                    <p>Symptoms of Dental Disease in Cats:
+                    <ul>
+                        <li>Bad breath (halitosis)</li>
+                        <li>Red, swollen gums</li>
+                        <li>Loss of appetite or difficulty eating</li>
+                        <li>Excessive drooling</li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+
+            <div class="disease-block" onclick="toggleDescription('diabetes-description')">
+                <h3>Diabetes</h3>
+                <div id="diabetes-description" class="disease-description">
+                    <p>Symptoms of Diabetes in Cats:
+                    <ul>
+                        <li>Increased thirst and urination</li>
+                        <li>Weight loss despite increased appetite</li>
+                        <li>Weakness or lethargy</li>
+                        <li>Poor coat condition</li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+
+            <div class="disease-block" onclick="toggleDescription('arthritis-description')">
+                <h3>Arthritis</h3>
+                <div id="arthritis-description" class="disease-description">
+                    <p>Symptoms of Arthritis in Cats:
+                    <ul>
+                        <li>Difficulty jumping or climbing</li>
+                        <li>Stiffness or limping</li>
+                        <li>Reluctance to move or play</li>
+                        <li>Changes in behavior (irritability)</li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar: Nearby Doctors and AI Chatbot -->
+        <div class="right-sidebar">
+            <h2>Find Nearby Doctors</h2>
+
+            <label for="location">Enter your Location (City or Address):</label>
+            <input type="text" id="location" placeholder="Enter Location" />
+
+            <button onclick="findNearbyDoctors()">Find Doctors</button>
+
+            <div id="doctor-list-container" style="display: none;">
+                <ul class="doctor-list" id="doctor-list">
+                    <!-- Doctor details will appear here -->
+                </ul>
+            </div>
+
+            <div class="doctor-chatbot">
+                <h2>AI Doctor Chatbot</h2>
+                <div class="chatbot-box" id="chatbot-box">
+                    <p>Welcome! How can I assist with your cat's health today?</p>
+                </div>
+                <input type="text" id="user-input" class="chatbot-input" placeholder="Ask the AI Doctor..." />
+                <button class="chatbot-button" onclick="askDoctor()">Ask</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle the disease description visibility
+        function toggleDescription(id) {
+            var description = document.getElementById(id);
+            if (description.style.display === "none" || description.style.display === "") {
+                description.style.display = "block";
+            } else {
+                description.style.display = "none";
+            }
+        }
+
+        // Function to find nearby doctors based on the user's location
+        function findNearbyDoctors() {
+            var location = document.getElementById('location').value;
+            if (location === "") {
+                alert("Please enter a location.");
+                return;
+            }
+
+            // Simulating fetching doctors' data based on location
+            var doctors = [
+                { name: 'Dr. Alice Thompson', specialty: 'Veterinary Specialist', distance: '5 miles' },
+                { name: 'Dr. Bob Marshall', specialty: 'General Veterinarian', distance: '7 miles' },
+                { name: 'Dr. Claire Evans', specialty: 'Emergency Veterinarian', distance: '10 miles' },
+                { name: 'Dr. David Lee', specialty: 'Cat Care Specialist', distance: '3 miles' },
+            ];
+
+            // Display doctor list
+            var doctorListContainer = document.getElementById('doctor-list-container');
+            var doctorList = document.getElementById('doctor-list');
+            doctorList.innerHTML = '';  // Clear any previous list
+
+            doctors.forEach(function (doctor) {
+                var listItem = document.createElement('li');
+                listItem.innerHTML = `<strong>${doctor.name}</strong><br>${doctor.specialty}<br>Location: ${doctor.distance}`;
+                doctorList.appendChild(listItem);
+            });
+
+            // Show the doctor list
+            doctorListContainer.style.display = 'block';
+        }
+
+        // AI Doctor Chatbot
+        function askDoctor() {
+            var userInput = document.getElementById('user-input').value;
+            var chatbotBox = document.getElementById('chatbot-box');
+
+            if (userInput) {
+                var userMessage = document.createElement('p');
+                userMessage.style.fontWeight = 'bold';
+                userMessage.textContent = 'You: ' + userInput;
+                chatbotBox.appendChild(userMessage);
+
+                var aiMessage = document.createElement('p');
+                aiMessage.textContent = 'AI Doctor: I’m not a real vet, but it seems like your cat might need a professional checkup. Please contact a vet.';
+                chatbotBox.appendChild(aiMessage);
+
+                document.getElementById('user-input').value = '';
+                chatbotBox.scrollTop = chatbotBox.scrollHeight; // Auto-scroll to the bottom
+            }
+        }
+    </script>
+
+</body>
+
+</html>

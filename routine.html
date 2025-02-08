@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Exercise Routine</title>
+    <style>   
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .bmi-category {
+            font-size: 18px;
+            color: #555;
+            margin-top: 10px;
+        }
+        .exercise-routine {
+            margin: 20px 0;
+        }
+        .table-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+        button {
+            padding: 12px 24px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .download-button {
+            background-color: #007BFF;
+        }
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Personalized Exercise Routine</h1>
+        
+        <!-- Display BMI Category from localStorage -->
+        <div class="bmi-category" id="bmiCategory"></div>
+        
+        <!-- Monthly Exercise Routine Chart -->
+        <div class="table-container">
+            <table id="exerciseTable"></table>
+        </div>
+
+        <button id="generateRoutine" onclick="generateExerciseRoutine()">Generate Exercise Routine</button>
+        <!-- Add a download button -->
+        <button id="downloadBtn" style="display: none;" onclick="downloadPDF()" class="download-button">Download PDF</button>
+    </div>
+
+    <script>
+        // Fetch BMI Category from localStorage
+        const bmiCategory = localStorage.getItem('bmiCategory');
+
+        // Display the BMI Category on the page
+        if (bmiCategory) {
+            document.getElementById('bmiCategory').textContent = `Your BMI Category: ${bmiCategory}`;
+        } else {
+            alert("BMI Category not found. Please calculate your BMI first.");
+        }
+
+        function generateExerciseRoutine() {
+            let exercises = [];
+
+            // Generate Exercise Routine based on BMI Category
+            if (bmiCategory === 'Normal') {
+                exercises = [
+                    '30 minutes Cardio', 'Full Body Strength Training', 'Rest day or Yoga', '30 minutes Cardio', 'Strength Training', 'Outdoor Activity', 'Rest day or Stretching',
+                    '30 minutes Cardio', 'Full Body Strength Training', 'Rest day or Yoga', '30 minutes Cardio', 'Strength Training', 'Outdoor Activity', 'Rest day or Stretching',
+                    '30 minutes Cardio', 'Full Body Strength Training', 'Rest day or Yoga', '30 minutes Cardio', 'Strength Training', 'Outdoor Activity', 'Rest day or Stretching',
+                    '30 minutes Cardio', 'Full Body Strength Training', 'Rest day or Yoga', '30 minutes Cardio', 'Strength Training', 'Outdoor Activity', 'Rest day or Stretching'
+                ];
+            } else if (bmiCategory === 'Underweight') {
+                exercises = [
+                    'Full Body Strength Training', 'Light Cardio', 'Rest day or Yoga', 'Full Body Strength Training', 'Cardio', 'Bodyweight Training', 'Rest day or Light Yoga',
+                    'Full Body Strength Training', 'Light Cardio', 'Rest day or Yoga', 'Full Body Strength Training', 'Cardio', 'Bodyweight Training', 'Rest day or Light Yoga',
+                    'Full Body Strength Training', 'Light Cardio', 'Rest day or Yoga', 'Full Body Strength Training', 'Cardio', 'Bodyweight Training', 'Rest day or Light Yoga',
+                    'Full Body Strength Training', 'Light Cardio', 'Rest day or Yoga', 'Full Body Strength Training', 'Cardio', 'Bodyweight Training', 'Rest day or Light Yoga'
+                ];
+            } else if (bmiCategory === 'Overweight') {
+                exercises = [
+                    'Moderate Cardio', 'Full Body Strength Training', 'Rest day or Stretching', 'Cardio', 'Strength Training', 'Outdoor Activity', 'Rest day or Yoga',
+                    'Moderate Cardio', 'Full Body Strength Training', 'Rest day or Stretching', 'Cardio', 'Strength Training', 'Outdoor Activity', 'Rest day or Yoga',
+                    'Moderate Cardio', 'Full Body Strength Training', 'Rest day or Stretching', 'Cardio', 'Strength Training', 'Outdoor Activity', 'Rest day or Yoga',
+                    'Moderate Cardio', 'Full Body Strength Training', 'Rest day or Stretching', 'Cardio', 'Strength Training', 'Outdoor Activity', 'Rest day or Yoga'
+                ];
+            } else if (bmiCategory === 'Obese') {
+                exercises = [
+                    'Low Impact Cardio', 'Strength Training', 'Rest day or Stretching', 'Walking or Swimming', 'Strength Training', 'Low Impact Cardio', 'Rest day or Gentle Yoga',
+                    'Low Impact Cardio', 'Strength Training', 'Rest day or Stretching', 'Walking or Swimming', 'Strength Training', 'Low Impact Cardio', 'Rest day or Gentle Yoga',
+                    'Low Impact Cardio', 'Strength Training', 'Rest day or Stretching', 'Walking or Swimming', 'Strength Training', 'Low Impact Cardio', 'Rest day or Gentle Yoga',
+                    'Low Impact Cardio', 'Strength Training', 'Rest day or Stretching', 'Walking or Swimming', 'Strength Training', 'Low Impact Cardio', 'Rest day or Gentle Yoga'
+                ];
+            }
+
+            // Populate the table with the routine data for 4 weeks (28 days)
+            let tableHTML = `<tr><th>Week / Day</th><th>Day 1</th><th>Day 2</th><th>Day 3</th><th>Day 4</th><th>Day 5</th><th>Day 6</th><th>Day 7</th></tr>`;
+            let weekCounter = 1;
+
+            for (let i = 0; i < 28; i += 7) {
+                tableHTML += `<tr><th>Week ${weekCounter}</th>`;
+                for (let j = 0; j < 7; j++) {
+                    tableHTML += `<td>${exercises[i + j]}</td>`;
+                }
+                tableHTML += `</tr>`;
+                weekCounter++;
+            }
+
+            document.getElementById('exerciseTable').innerHTML = tableHTML;
+
+            // Show the "Download Exercise Routine" button
+            document.getElementById('downloadBtn').style.display = 'block';
+        }
+
+        // Function to download the exercise routine as a PDF
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Add title and BMI category text to the PDF
+            doc.text('Personalized Exercise Routine', 10, 10);
+            doc.text(document.getElementById('bmiCategory').textContent, 10, 20);
+
+            // Add the exercise routine table
+            doc.autoTable({ html: '#exerciseTable', startY: 30 });
+
+            // Download the PDF
+            doc.save('exercise_routine.pdf');
+        }
+    </script>
+
+</body>
+</html>
+

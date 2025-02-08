@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Diet Plan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        button {
+            padding: 12px 24px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .bmi-result {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #eef2f3;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .bmi-category {
+            font-size: 18px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Personalized Diet Plan</h1>
+
+        <!-- Display BMI Category from localStorage -->
+        <div class="bmi-result" id="bmiResult" style="display: none;">
+            <p class="bmi-category">Your BMI Category: <span id="bmiCategory"></span></p>
+        </div>
+
+        <!-- Additional User Inputs for Diet Plan -->
+        <div class="input-group">
+            <label for="foodHabit">Select Your Food Habit</label>
+            <select id="foodHabit" required>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="non-vegetarian">Non-Vegetarian</option>
+                <option value="vegan">Vegan</option>
+                <option value="others">Others</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="dailyExpense">Daily Food Expense (in USD)</label>
+            <input type="number" id="dailyExpense" required placeholder="Enter your daily food expense">
+        </div>
+
+        <div class="input-group">
+            <label for="otherPreferences">Other Preferences</label>
+            <input type="text" id="otherPreferences" placeholder="Any other dietary preferences?">
+        </div>
+
+        <button onclick="generateDietPlan()">Generate Diet Plan</button>
+        <button id="downloadBtn" style="display: none;" onclick="downloadDietPlan()">Download Diet Plan</button>
+    </div>
+
+    <script>
+        // Fetch BMI Category from localStorage
+        const bmiCategory = localStorage.getItem('bmiCategory');
+
+        // Display the BMI Category on the page
+        if (bmiCategory) {
+            document.getElementById('bmiCategory').textContent = bmiCategory;
+            document.getElementById('bmiResult').style.display = 'block';
+        } else {
+            alert("BMI Category not found. Please calculate your BMI first.");
+        }
+
+        function generateDietPlan() {
+            const foodHabit = document.getElementById('foodHabit').value;
+            const dailyExpense = document.getElementById('dailyExpense').value;
+            const otherPreferences = document.getElementById('otherPreferences').value;
+
+            let dietPlan = "";
+
+            // Diet Plan Generation Logic Based on BMI Category (from localStorage)
+            if (bmiCategory === 'Normal') {
+                dietPlan = `Normal BMI Diet Plan:
+                - Breakfast: 1 cup of Oats with 1/2 cup of mixed fruits and 1 tbsp of almonds
+                - Lunch: 150g of Grilled chicken or tofu with 1 cup of steamed vegetables and 1/2 cup of brown rice
+                - Snack: 1/2 cup of Greek yogurt with a handful of almonds
+                - Dinner: 150g of Baked salmon or chickpea salad (1 cup)
+                - Drink plenty of water and avoid sugary drinks.`;
+            } else if (bmiCategory === 'Underweight') {
+                dietPlan = `Underweight BMI Diet Plan:
+                - Breakfast: 3 Scrambled eggs with 1/2 avocado and 2 slices of whole-grain toast
+                - Lunch: 1 cup of Quinoa with 150g of chicken or chickpeas and 1 cup of roasted vegetables
+                - Snack: 2 tbsp of Peanut butter on 5 whole wheat crackers
+                - Dinner: 200g of Grilled steak or lentil curry with 1/2 cup of rice
+                - Increase calorie intake with healthy fats and proteins.`;
+            } else if (bmiCategory === 'Overweight') {
+                dietPlan = `Overweight BMI Diet Plan:
+                - Breakfast: Smoothie with 1 cup of spinach, 1 banana, and 1/2 cup of almond milk
+                - Lunch: 150g of Grilled fish with 1 cup of steamed veggies
+                - Snack: 1 carrot with 3 tbsp of hummus
+                - Dinner: 1 cup of Quinoa salad with mixed greens and 100g of lean protein
+                - Focus on portion control and avoid processed foods.`;
+            } else if (bmiCategory === 'Obese') {
+                dietPlan = `Obese BMI Diet Plan:
+                - Breakfast: 3 egg whites scrambled with 1/2 cup of spinach
+                - Lunch: 150g of Grilled chicken salad with 1/2 avocado and 2 tbsp vinaigrette
+                - Snack: 1 Apple with 1 tbsp of almond butter
+                - Dinner: 150g of Baked chicken or tofu with 1 cup of roasted vegetables
+                - Limit calorie intake, focus on nutrient-dense foods.`;
+            }
+
+            // Diet Plan Customization Based on Food Habit
+            if (foodHabit === 'vegetarian') {
+                dietPlan += "\n\nVegetarian Option: Focus on plant-based proteins like lentils, tofu, and quinoa.";
+            } else if (foodHabit === 'non-vegetarian') {
+                dietPlan += "\n\nNon-Vegetarian Option: Include lean meats, poultry, and fish.";
+            } else if (foodHabit === 'vegan') {
+                dietPlan += "\n\nVegan Option: Include plant-based proteins like beans, lentils, tofu, and quinoa.";
+            }
+
+            // Adding other preferences and expense
+            dietPlan += `\n\nDaily Food Expense: $${dailyExpense}`;
+            if (otherPreferences) {
+                dietPlan += `\nOther Preferences: ${otherPreferences}`;
+            }
+
+            // Show the "Download Diet Plan" button
+            document.getElementById('downloadBtn').style.display = 'block';
+
+            // Store the generated diet plan globally
+            window.dietPlan = dietPlan;
+        }
+
+        function downloadDietPlan() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Add text to the PDF
+            doc.text(window.dietPlan, 10, 10);
+
+            // Download the PDF
+            doc.save('diet_plan.pdf');
+        }
+    </script>
+
+</body>
+</html>

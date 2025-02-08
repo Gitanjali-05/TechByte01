@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Your Goals</title>
+    <link rel="stylesheet" href="moregoal.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Select your goals</h2>
+        <div class="grid">
+            <div class="goal">
+                <img src="https://cdn.prod.website-files.com/65843eadefe94c7457b780dd/66b0be727aa5b7a86fc078f1_66b0be447aa5b7a86fc02b4d_weight%2520gain.webp" alt="Weight Loss">
+                <p>Weight Loss</p>
+                <button onclick="next() " class="like-button">next</button>
+            </div>
+            <div class="goal">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9zQbkZ4wx8TmynwYN5JesnnToc6eEF5KO7iSMoXh7XU4h-CwW-dWw01v_zmJ3QPY8UYg&usqp=CAU" alt="Muscle Building">
+                <p>Muscle Building</p>
+                <button onclick="next() " class="like-button">next</button>
+            </div>
+            <div class="goal">
+                <img src="https://static.vecteezy.com/system/resources/previews/006/757/560/non_2x/heartbeat-or-pulse-icon-in-flat-style-vector.jpg" alt="Cardio Fitness">
+                <p>Cardio Fitness</p>
+                <button onclick="next() "class="like-button">next</button>
+            </div>
+            <div class="goal">
+                <img src="https://img.freepik.com/premium-vector/smiling-father-measure-son-height-near-wall_198530-3191.jpg" alt="Height Gain">
+                <p>Height Gain</p>
+                <button onclick="next() " class="like-button">next</button>
+            </div>
+            <div class="goal">
+                <img src="https://img.freepik.com/premium-vector/pose-man-brown-shirt-stylish_1010547-736.jpg" alt="Flexibility">
+                <p>Flexibility</p>
+                <button onclick="next()" class="like-button">next</button>
+            </div>
+            <div class="goal">
+                <img src="https://media.licdn.com/dms/image/v2/D4D22AQGTorkGRD_3HA/feedshare-shrink_800/feedshare-shrink_800/0/1722424361948?e=2147483647&v=beta&t=BTz96qN042NzvL4cIHLcPt66qf3EptHePSWEW1l7Szo" alt="Sports Training">
+                <p>Sports-Specific Training</p>
+                <button onclick="sports()" class="like-button">next</button>
+            </div>
+        </div>
+        <div class="special">
+            <div class="goal">
+                <img src="https://media.istockphoto.com/id/1039118842/vector/wellness-an-fitness-vector-design-template.jpg?s=170x170&k=20&c=8zLdwg_HArGKatT2Q3cjTEflg5QYj61zhsttzjh25ZU=" alt="Special Medical Plans">
+                <p>Special Medical Plans (For Patients)</p>
+                <button onclick="sports()" class="like-button">next</button>
+            </div>
+            <div class="goal">
+                <img src="https://www.shutterstock.com/image-vector/cat-gym-logo-negative-space-260nw-2217105587.jpg" alt="Pet Fitness">
+                <p>Pet Fitness</p>
+                <button onclick="pet()"class="like-button">next</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function next() {
+                window.location.href = "todo.html"; 
+            }
+
+            function sports() {
+                window.location.href = "sports.html"; 
+            }
+            function pet() {
+                window.location.href = "petfitness.html"; 
+            }
+    </script>
+</body>
+</html>

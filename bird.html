@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bird Health & Fitness</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f7f6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #4CAF50;
+            text-align: center;
+        }
+
+        /* Disease Section */
+        .disease {
+            background-color: #e3f2f1;
+            border: 1px solid #4CAF50;
+            border-radius: 8px;
+            margin: 10px 0;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+
+        .disease:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+        .disease-heading h3 {
+            color: #00796b;
+            margin: 0;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .disease-symptoms {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .disease-symptoms p {
+            font-size: 1em;
+            color: #555;
+        }
+
+        .disease-symptoms ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        /* Exercise Section */
+        .exercise {
+            background-color: #e8f5e9;
+            border: 1px solid #388e3c;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .exercise h3 {
+            color: #388e3c;
+            margin: 0;
+        }
+
+        .exercise p {
+            color: #555;
+        }
+
+        /* Location Section */
+        .location {
+            background-color: #fff3e0;
+            border: 1px solid #ff9800;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .location input {
+            padding: 10px;
+            width: 250px;
+            border-radius: 4px;
+            border: 1px solid #ff9800;
+            margin-right: 10px;
+            font-size: 1em;
+        }
+
+        .location button {
+            background-color: #ff9800;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-size: 1.1em;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .location button:hover {
+            background-color: #fb8c00;
+        }
+
+        #vet-results ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #vet-results li {
+            background-color: #ffcc80;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Bird Health & Fitness</h1>
+
+        <h2>Common Bird Diseases</h2>
+        <div class="disease">
+            <div class="disease-heading" onclick="toggleSymptoms('feather-loss')">
+                <h3>Feather Loss</h3>
+            </div>
+            <div class="disease-symptoms" id="feather-loss">
+                <p><strong>Symptoms:</strong></p>
+                <ul>
+                    <li>Missing feathers, particularly on the wings and tail</li>
+                    <li>Excessive preening or scratching</li>
+                    <li>Skin irritation or sores</li>
+                </ul>
+            </div>
+        </div>
+        <div class="disease">
+            <div class="disease-heading" onclick="toggleSymptoms('beak-mites')">
+                <h3>Beak Mites</h3>
+            </div>
+            <div class="disease-symptoms" id="beak-mites">
+                <p><strong>Symptoms:</strong></p>
+                <ul>
+                    <li>Flaky, dry skin around the beak</li>
+                    <li>Beak deformities</li>
+                    <li>Excessive scratching or rubbing of the beak</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Recommended Exercises for Birds</h2>
+        <div class="exercise">
+            <h3>1. Wing Flapping</h3>
+            <p>This exercise is great for strengthening the wings and improving overall health.</p>
+            <p><strong>Duration:</strong> 5-10 minutes a day</p>
+        </div>
+        <div class="exercise">
+            <h3>2. Climbing and Perching</h3>
+            <p>Encourages natural behavior and helps in improving the bird's leg strength.</p>
+            <p><strong>Duration:</strong> 15-20 minutes a day</p>
+        </div>
+
+        <h2>Find Nearby Vets</h2>
+        <div class="location">
+            <p>Enter your location to find nearby bird specialists.</p>
+            <input type="text" id="location-input" placeholder="Enter your city or area">
+            <button onclick="findVets()">Find Vets</button>
+        </div>
+
+        <div id="vet-results">
+            <!-- Results will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        function toggleSymptoms(disease) {
+            var element = document.getElementById(disease);
+            if (element.style.display === "none") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+
+        function findVets() {
+            var location = document.getElementById("location-input").value;
+            if (location.trim() === "") {
+                alert("Please enter a valid location.");
+                return;
+            }
+
+            // Mock API or Placeholder Results
+            document.getElementById("vet-results").innerHTML = `
+                <h3>Nearby Bird Vets in ${location}</h3>
+                <ul>
+                    <li>Bird Care Clinic - 123 Bird St, ${location}</li>
+                    <li>Feathered Friends Animal Hospital - 456 Aviary Ave, ${location}</li>
+                    <li>Exotic Birds Vet - 789 Parrot Rd, ${location}</li>
+                </ul>
+            `;
+        }
+    </script>
+
+</body>
+</html>

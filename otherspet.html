@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Pets Health Problems & Solutions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+        .health-card {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+        }
+        .health-item {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            width: 45%;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .health-item h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .health-item p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .health-item ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            color: #555;
+        }
+        .health-item .solution {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .health-item button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        .health-item button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Other Pets Health Problems & Solutions</h1>
+    
+    <div class="health-card" id="healthProblems">
+        <!-- Dynamic content will be injected here -->
+    </div>
+
+</div>
+
+<script>
+// Example health problems and solutions for small mammals and reptiles
+const healthProblems = [
+    {
+        pet: "Rabbit",
+        problem: "Obesity",
+        symptoms: [
+            "Difficulty moving or exercising",
+            "Excessive weight gain",
+            "Shortness of breath or lethargy",
+            "Poor grooming habits"
+        ],
+        solution: "Provide a high-fiber diet, exercise opportunities, and monitor their food intake to maintain a healthy weight."
+    },
+    {
+        pet: "Guinea Pig",
+        problem: "Dental Issues",
+        symptoms: [
+            "Difficulty chewing or eating",
+            "Drooling",
+            "Overgrown teeth",
+            "Reduced activity"
+        ],
+        solution: "Ensure a diet rich in hay, which helps wear down their teeth, and take them to the vet for regular dental checks."
+    },
+    {
+        pet: "Turtle",
+        problem: "Shell Rot",
+        symptoms: [
+            "Soft or discolored shell",
+            "Foul odor from the shell",
+            "Bumps or abscesses around the shell"
+        ],
+        solution: "Improve the habitat with proper humidity and UVB lighting, and seek immediate veterinary treatment if necessary."
+    },
+    {
+        pet: "Ferret",
+        problem: "Insulinoma (Pancreatic Tumor)",
+        symptoms: [
+            "Lethargy",
+            "Weakness in the legs",
+            "Seizures",
+            "Unsteady walking"
+        ],
+        solution: "Consult a vet for diagnosis, and manage the condition with medication and diet adjustments. Surgery may be needed in some cases."
+    }
+];
+
+// Function to create the health problem sections dynamically
+function displayHealthProblems() {
+    const healthContainer = document.getElementById("healthProblems");
+
+    healthProblems.forEach(problem => {
+        const healthItem = document.createElement("div");
+        healthItem.classList.add("health-item");
+
+        healthItem.innerHTML = `
+            <h2>${problem.pet} - ${problem.problem}</h2>
+            <p><strong>Symptoms:</strong></p>
+            <ul>
+                ${problem.symptoms.map(symptom => `<li>${symptom}</li>`).join('')}
+            </ul>
+            <p><strong class="solution">Solution:</strong> ${problem.solution}</p>
+            <button onclick="alert('Consult a vet for proper diagnosis and treatment.')">More Details</button>
+        `;
+
+        healthContainer.appendChild(healthItem);
+    });
+}
+
+// Call the function to display the health problems when the page loads
+window.onload = displayHealthProblems;
+</script>
+
+</body>
+</html>

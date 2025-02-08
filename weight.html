@@ -35,33 +35,29 @@
                 });
             </script>
             
-            <p id="healthissue">
-                if(Lungs problem && heart problem)
-
-            </p>
+            
         </div>
 
         <div class="activities">
-            <h3>Suggested Activities</h3>
-            <div class="activity">
-
-            </div>
-            <div class="activity">
-
-            </div>
+            <button onclick="suggestion()">Suggested Activities</button>
+            <script>
+                function suggestion() {
+                    window.location.href = "assigned.html"; 
+                }
+                </script>
         </div>
 
         <div class="buttons">
-            <button onclick="goal()">GO FOR MORE GOALS</button>
+            <button onclick="moregoal()">GO FOR MORE GOALS</button>
             <script>
-                function goal() {
-                    window.location.href = "moregoal.html"; // Redirect to another page
+                function moregoal() {
+                    window.location.href = "moregoal.html"; 
                 }
             </script>
-            <button onclick="manualGoal">CHOOSE GOALS MANUALLY</button>
+            <button onclick="manualgoal">CHOOSE GOALS MANUALLY</button>
             <script>
-                function goal() {
-                    window.location.href = "manualgoal.html"; // Redirect to another page
+                function manualgoal() {
+                    window.location.href = "manualgoal.html"; 
                 }
             </script>
         </div>

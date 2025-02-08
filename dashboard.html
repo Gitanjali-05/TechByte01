@@ -17,37 +17,64 @@
         <img src="https://pairedcms.imgix.net/https%3A%2F%2Fmedia.graphassets.com%2Foutput%3Dformat%3Ajpg%2FzGpz3HjRROJMw2wAkwZA?ixlib=js-3.8.0&w=1110&s=4cd2f5713b712b4e351faabfc1109e92" alt="Be confident make your self fit">
     </div>
 
-    <form>
+    <form id="sign-up-form">
         <div class="input-box">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Name">
+            <input type="text" id="name" placeholder="Name" required class="inst">
         </div>
         <div class="input-box">
             <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="Email">
+            <input type="email" id="email" placeholder="Email" required class="inst">
         </div>
         <div class="input-box">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password">
+            <input type="password" id="password" placeholder="Password" required class="inst">
         </div>
         <div class="input-box">
             <i class="fas fa-venus-mars"></i>
-            <input type="text" placeholder="Gender">
+            <input type="text" id="gender" placeholder="Gender" required class="inst">
         </div>
-        
-        
-            
-        <button onclick="redirectToNEXT();"> GO AHED &#10132;</button>
-        <script>
-            function redirectToNEXT (){
-                console.log("Trying")
-                window.open("BMI.html"); // Redirect to another page
-            }
-        </script>
-        
-    
 
+        <button type="button" onclick="submitForm();">GO AHED &#10132;</button>
     </form>
+
+    <script>
+       
+        document.addEventListener("DOMContentLoaded", function () {
+            let inputs = document.querySelectorAll(".inst");
+
+            
+            inputs.forEach((input, index) => {
+                input.addEventListener("keydown", function (event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault(); 
+                        let nextInput = inputs[index + 1];
+                        if (nextInput) {
+                            nextInput.focus();
+                        }
+                    }
+                });
+            });
+        });
+
+       
+        function submitForm() {
+            
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const gender = document.getElementById("gender").value;
+
+            
+            localStorage.setItem("userName", name);
+            localStorage.setItem("userEmail", email);
+            localStorage.setItem("userPassword", password);
+            localStorage.setItem("userGender", gender);
+
+            
+            window.open("BMI.html");
+        }
+    </script>
 </div>
 
 </body>

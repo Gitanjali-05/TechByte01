@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Personalized Exercise Routine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        select, button {
+            font-size: 16px;
+            padding: 10px;
+            width: 100%;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .exercise-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .exercise-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            width: 48%;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .exercise-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Select Your Weight Category</h1>
+
+        <form id="weightCategoryForm">
+            <label for="weightCategory">Choose your weight category:</label>
+            <select id="weightCategory" name="weightCategory">
+                <option value="Normal">Normal</option>
+                <option value="Underweight">Underweight</option>
+                <option value="Overweight">Overweight</option>
+                <option value="Obese">Obese</option>
+            </select>
+
+            <button type="button" onclick="generateExerciseRoutine()">Show Exercises</button>
+        </form>
+
+        <div id="exerciseRoutine" class="exercise-container"></div>
+    </div>
+
+    <script>
+        function generateExerciseRoutine() {
+            const weightCategory = document.getElementById('weightCategory').value;
+            let exercises = [];
+
+            // Assign exercises and images based on weight category
+            if (weightCategory === 'Normal') {
+                exercises = [
+                    { name: '30 minutes Cardio', img: 'https://via.placeholder.com/300x200.png?text=Cardio+Image' },
+                    { name: 'Full Body Strength Training', img: 'https://via.placeholder.com/300x200.png?text=Strength+Training' },
+                    { name: 'Rest day or Yoga', img: 'https://via.placeholder.com/300x200.png?text=Yoga' },
+                    { name: 'Outdoor Activity', img: 'https://via.placeholder.com/300x200.png?text=Outdoor+Activity' }
+                ];
+            } else if (weightCategory === 'Underweight') {
+                exercises = [
+                    { name: 'Full Body Strength Training', img: 'https://via.placeholder.com/300x200.png?text=Strength+Training' },
+                    { name: 'Light Cardio', img: 'https://via.placeholder.com/300x200.png?text=Light+Cardio' },
+                    { name: 'Rest day or Yoga', img: 'https://via.placeholder.com/300x200.png?text=Yoga' },
+                    { name: 'Bodyweight Training', img: 'https://via.placeholder.com/300x200.png?text=Bodyweight+Training' }
+                ];
+            } else if (weightCategory === 'Overweight') {
+                exercises = [
+                    { name: 'Moderate Cardio', img: 'https://via.placeholder.com/300x200.png?text=Cardio+Image' },
+                    { name: 'Full Body Strength Training', img: 'https://via.placeholder.com/300x200.png?text=Strength+Training' },
+                    { name: 'Outdoor Activity', img: 'https://via.placeholder.com/300x200.png?text=Outdoor+Activity' },
+                    { name: 'Rest day or Yoga', img: 'https://via.placeholder.com/300x200.png?text=Yoga' }
+                ];
+            } else if (weightCategory === 'Obese') {
+                exercises = [
+                    { name: 'Low Impact Cardio', img: 'https://via.placeholder.com/300x200.png?text=Low+Impact+Cardio' },
+                    { name: 'Strength Training', img: 'https://via.placeholder.com/300x200.png?text=Strength+Training' },
+                    { name: 'Walking or Swimming', img: 'https://via.placeholder.com/300x200.png?text=Walking+or+Swimming' },
+                    { name: 'Rest day or Gentle Yoga', img: 'https://via.placeholder.com/300x200.png?text=Gentle+Yoga' }
+                ];
+            }
+
+            // Display the exercises along with images
+            let exerciseHTML = '';
+            exercises.forEach(exercise => {
+                exerciseHTML += `
+                    <div class="exercise-card">
+                        <img src="${exercise.img}" alt="${exercise.name}">
+                        <h3>${exercise.name}</h3>
+                    </div>
+                `;
+            });
+
+            document.getElementById('exerciseRoutine').innerHTML = exerciseHTML;
+        }
+    </script>
+
+</body>
+</html>

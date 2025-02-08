@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitCare - Sports Training</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f89ea6;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        h1 span {
+            color: #4CAF50;
+        }
+
+        h2 {
+            color: #555;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        h3 {
+            color: #007BFF;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: 90%;
+            max-width: 200px;
+            margin: 8px;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #005c8e;
+        }
+
+        .sports-buttons button {
+            background-color: #001F54;
+            color: white;
+        }
+
+        .sports-buttons button:hover {
+            background-color: #004682;
+        }
+
+        .involvement-buttons button {
+            background-color: #022859;
+            color: white;
+        }
+
+        .involvement-buttons button:hover {
+            background-color: #014a71;
+        }
+
+        .mentorship {
+            background-color: red;
+            color: white;
+        }
+
+        .mentorship:hover {
+            background-color: #b71c1c;
+        }
+
+        .app-training {
+            background-color: #ff5733;
+            color: white;
+        }
+
+        .app-training:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://media.istockphoto.com/id/1290377859/vector/athletic-man-and-woman-with-a-dumbells.jpg?s=612x612&w=0&k=20&c=hTEqoZXFp5xjfDwpmYTazrimN8OLG7-2sF4Con6c3t8=" alt="FitCare Logo" class="logo">
+            <h1>FIT<span>CARE</span></h1>
+        </div>
+        <h2>SPORTS SPECIFIC TRAINING</h2>
+        <h3>CHOOSE YOUR SPORTS</h3>
+        <div class="sports-buttons">
+            <button onclick="selectSport('Cricket')">Cricket</button>
+            <button onclick="selectSport('Football')">Football</button>
+            <button onclick="selectSport('Hockey')">Hockey</button>
+            <button onclick="selectSport('Others')">Others</button>
+        </div>
+        <h3>HOW ARE YOU INVOLVED IN SPORTS?</h3>
+        <div class="involvement-buttons">
+            <button onclick="selectInvolvement('Amateur')">Amateur</button>
+            <button onclick="selectInvolvement('Professional')">Professional</button>
+        </div>
+        <div class="action-buttons">
+            <button class="mentorship" onclick="findMentorship()">Find Mentorship</button>
+            <button class="app-training" onclick="goForAppTraining()">Go for App-Based Training</button>
+        </div>
+    </div>
+
+    <script>
+        function selectSport(sport) {
+            alert('You selected: ' + sport);
+        }
+
+        function selectInvolvement(involvement) {
+            alert('You are involved as: ' + involvement);
+        }
+
+        function findMentorship() {
+            alert('Searching for mentorship...');
+        }
+
+        function goForAppTraining() {
+            alert('Redirecting to app-based training...');
+        }
+    </script>
+</body>
+</html>

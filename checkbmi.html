@@ -20,7 +20,7 @@
             <h2>Your BMI Report is Ready</h2>
             <div class="bmi-box">
                 <p>Your BMI is: <span id="bmi-result"></span></p>
-                <p>Category: <span id="bmi-category"></span></p> <!-- Corrected the ID here -->
+                <p>Category: <span id="bmi-category"></span></p> 
             </div>
         </div>
 
@@ -30,29 +30,31 @@
         </div>
 
         <script>
-            // This script retrieves the BMI data from localStorage and displays it
+            
             document.addEventListener("DOMContentLoaded", function () {
-                // Retrieve BMI and category from localStorage
+               
                 let bmiValue = localStorage.getItem("bmiValue");
                 let bmiCategory = localStorage.getItem("bmiCategory");
 
-                // If there's no data in localStorage, display '--'
+                
                 document.getElementById("bmi-result").textContent = bmiValue || "--";
                 document.getElementById("bmi-category").textContent = bmiCategory || "--";
+
+                localStorage.setItem("bmiCategory", bmiCategory); 
             });
 
-            // Function to redirect to standard BMI chart page
+            
             function login() {
-                window.location.href = "standard.html"; // Redirect to another page
+                window.location.href = "standard.html"; 
             }
 
-            // Function to redirect for Medical Assessment
+           
             function goFor() {
-                window.location.href = "medical.html"; // Redirect to medical assessment page
+                window.location.href = "medical.html"; 
             }
         </script>
 
-        <!-- "Go for Medical Assessment" Button -->
+        
         <button onclick="goFor()" class="assessment-btn">Go for Medical Assessment</button>
     </div>
 </body>
