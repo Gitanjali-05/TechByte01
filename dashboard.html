@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,75 +8,87 @@
     <link rel="stylesheet" href="dashboard.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-<div class="container">
-    <button class="close-btn">&times;</button>
-    <h1>Sign Up</h1>
-    <p>Already registered? <a href="#">Sign in</a></p>
-    
-    <div class="image">
-        <img src="https://pairedcms.imgix.net/https%3A%2F%2Fmedia.graphassets.com%2Foutput%3Dformat%3Ajpg%2FzGpz3HjRROJMw2wAkwZA?ixlib=js-3.8.0&w=1110&s=4cd2f5713b712b4e351faabfc1109e92" alt="Be confident make your self fit">
-    </div>
+    <div class="container">
+        <button class="close-btn">&times;</button>
+        <h1>Sign Up</h1>
+        <p>Already registered? <a href="#">Sign in</a></p>
 
-    <form id="sign-up-form">
-        <div class="input-box">
-            <i class="fas fa-user"></i>
-            <input type="text" id="name" placeholder="Name" required class="inst">
-        </div>
-        <div class="input-box">
-            <i class="fas fa-envelope"></i>
-            <input type="email" id="email" placeholder="Email" required class="inst">
-        </div>
-        <div class="input-box">
-            <i class="fas fa-lock"></i>
-            <input type="password" id="password" placeholder="Password" required class="inst">
-        </div>
-        <div class="input-box">
-            <i class="fas fa-venus-mars"></i>
-            <input type="text" id="gender" placeholder="Gender" required class="inst">
+        <div class="image">
+            <img src="https://pairedcms.imgix.net/https%3A%2F%2Fmedia.graphassets.com%2Foutput%3Dformat%3Ajpg%2FzGpz3HjRROJMw2wAkwZA?ixlib=js-3.8.0&w=1110&s=4cd2f5713b712b4e351faabfc1109e92"
+                alt="Be confident make your self fit">
         </div>
 
-        <button type="button" onclick="submitForm();">GO AHED &#10132;</button>
-    </form>
+        <form id="sign-up-form">
+            <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" id="name" placeholder="Name" required class="inst">
+            </div>
+            <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" placeholder="Email" required class="inst">
+            </div>
+            <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="Password" required class="inst">
+            </div>
+            <div class="input-box">
+                <i class="fas fa-venus-mars"></i>
 
-    <script>
-       
-        document.addEventListener("DOMContentLoaded", function () {
-            let inputs = document.querySelectorAll(".inst");
+                <label for="gender">Gender:</label>
+                <select id="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
 
-            
-            inputs.forEach((input, index) => {
-                input.addEventListener("keydown", function (event) {
-                    if (event.key === "Enter") {
-                        event.preventDefault(); 
-                        let nextInput = inputs[index + 1];
-                        if (nextInput) {
-                            nextInput.focus();
+            <button type="button" onclick="submitForm();">GO AHED &#10132;</button>
+        </form>
+
+        <script>
+
+            document.getElementById('nameGenderForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                inputs.forEach((input, index) => {
+                    input.addEventListener("keydown", function (event) {
+                        if (event.key === "Enter") {
+                            event.preventDefault();
+                            let nextInput = inputs[index + 1];
+                            if (nextInput) {
+                                nextInput.focus();
+                            }
                         }
-                    }
+                    });
                 });
             });
-        });
 
-       
-        function submitForm() {
-            
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
-            const gender = document.getElementById("gender").value;
 
-            
-            localStorage.setItem("userName", name);
-            localStorage.setItem("userEmail", email);
-            localStorage.setItem("userPassword", password);
-            localStorage.setItem("userGender", gender);
+            function submitForm() {
 
-            
-            window.open("BMI.html");
-        }
-    </script>
-</div>
+                const name = document.getElementById("name").value;
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+                const gender = document.getElementById("gender").value;
+
+                if (name.trim() === '') {
+                    alert('Name cannot be empty');
+                    return;
+                }
+
+                localStorage.setItem("userName", name);
+                localStorage.setItem("userEmail", email);
+                localStorage.setItem("userPassword", password);
+                localStorage.setItem("userGender", gender);
+
+                alert("Data saved successfully!");
+                window.open("BMI.html");
+            }
+        </script>
+    </div>
 
 </body>
+
 </html>

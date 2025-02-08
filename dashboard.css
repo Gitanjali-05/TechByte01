@@ -91,3 +91,7 @@ p a {
 .submit-btn i {
     font-size: 20px;
 }
+label {
+    display: block;
+    margin: 10px 0 5px;
+}

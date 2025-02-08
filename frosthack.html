@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>app page</title>
     <link rel="stylesheet" href="frosthack.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script> <!-- bcryptjs for password hashing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1-1/crypto-js.js"></script> <!-- CryptoJS for encryption -->
+</head>
 </head>
 <body>
     <div class="container">
@@ -33,6 +36,50 @@
             <a href="#">Forgot Password?</a>
             <p>Don't have an account? <a href="#">Sign Up</a></p>
         </div>
+        <script>
+            // Event listener for form submission
+            document.getElementById('emailPasswordForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+    
+                // Get values from form fields
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+    
+                // Email Validation
+                const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+                if (!emailRegex.test(email)) {
+                    alert('Invalid email format');
+                    return;
+                }
+    
+                // Password Validation: minimum 8 characters, at least one number and one letter
+                const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+                if (!passwordRegex.test(password)) {
+                    alert('Password must be at least 8 characters long and contain at least one letter and one number');
+                    return;
+                }
+    
+                // Hash the password before storing it
+                bcrypt.hash(password, 10, function(err, hashedPassword) {
+                    if (err) {
+                        console.error('Error hashing password:', err);
+                        return;
+                    }
+    
+                    // Encrypt email and hashed password before storing in localStorage
+                    const encryptedEmail = CryptoJS.AES.encrypt(email, 'secret-key').toString();
+                    const encryptedPassword = CryptoJS.AES.encrypt(hashedPassword, 'secret-key').toString();
+    
+                    // Store encrypted email and password in localStorage
+                    localStorage.setItem('email', encryptedEmail);
+                    localStorage.setItem('password', encryptedPassword);
+    
+                    // Redirect to the next page to store name and gender
+                    window.location.href = 'nameGender.html';
+                });
+            });
+        </script>
+    
     </div>
 
 </body>

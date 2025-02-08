@@ -78,17 +78,22 @@
                 <p>Equipments</p>
             </div>
             <div class="menu-item">
-                <button class="icon-btn">
+                <button class="icon-btn" onclick="check()">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoRSja-G7kmWznayeOegVg1NRkikufiXwZDhFSHO-Md33ez6cb4FcvspmXN9sH9blgPYQ&usqp=CAU" alt="Progress Checker">
                 </button>
                 <p>Progress Checker</p>
+                <script>
+                 function check() {
+                window.location.href = "check.html"; 
+            }
+                </script>
             </div>
         </div>
     </main>
 
     <footer>
         <div class="footer-section">
-            <button class="icon-btn">
+            <button class="icon-btn" onclick="coach()">
                 <img src="https://yt3.googleusercontent.com/C1rNazLJ5NS2JXbYkm1j1TF16yP6499ETNL-UTAFno1VAmXJzeNraL4lOxPYWXiGymN7EjfrSw=s160-c-k-c0x00ffffff-no-rj" alt="AI-POWERED COACHING">
             </button>
             <div class="footer-text">AI-POWERED COACHING</div>
@@ -97,6 +102,11 @@
             </div>
             <div class="footer-text">AR WORKOUTS</div>
         </div>
+        <script>
+             function coach() {
+                window.location.href = "ai.html"; 
+            }
+        </script>
     </footer>
 </body>
 </html>

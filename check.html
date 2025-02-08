@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Progress Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2C3E50;
+        }
+        .goal-section, .progress-section {
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .progress-bar div {
+            height: 100%;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fitness Progress Tracker</h1>
+
+       
+        <div class="goal-section">
+            <h2>Set Your Fitness Goal</h2>
+            <label for="goalType">Goal Type:</label>
+            <select id="goalType">
+                <option value="Weight Loss">Weight Loss</option>
+                <option value="Strength Gain">Strength Gain</option>
+                <option value="Endurance">Endurance</option>
+            </select>
+
+            <label for="goalAmount">Goal Amount (e.g., kg, reps, etc.):</label>
+            <input type="number" id="goalAmount" placeholder="Enter your goal amount">
+
+            <button onclick="setGoal()">Set Goal</button>
+        </div>
+
+        
+        <div class="progress-section">
+            <h2>Track Your Progress</h2>
+            <label for="currentProgress">Current Progress:</label>
+            <input type="number" id="currentProgress" placeholder="Enter your current progress">
+
+            <button onclick="updateProgress()">Update Progress</button>
+
+          
+            <div class="progress-bar" id="progressBar">
+                <div id="progress" style="width: 0%; background-color: #2ecc71;"></div>
+            </div>
+
+            <p id="progressText"></p>
+        </div>
+
+       
+        <div id="goalAchievedSection" style="display: none;">
+            <h2>Congratulations!</h2>
+            <p id="goalAchievedText"></p>
+        </div>
+    </div>
+
+    <script>
+        let goalType = '';
+        let goalAmount = 0;
+        let currentProgress = 0;
+
+        
+        function setGoal() {
+            goalType = document.getElementById('goalType').value;
+            goalAmount = parseFloat(document.getElementById('goalAmount').value);
+
+            if (isNaN(goalAmount) || goalAmount <= 0) {
+                alert('Please enter a valid goal amount.');
+                return;
+            }
+
+            document.getElementById('goalAchievedSection').style.display = 'none';
+            updateProgressText();
+        }
+
+        
+        function updateProgress() {
+            currentProgress = parseFloat(document.getElementById('currentProgress').value);
+
+            if (isNaN(currentProgress) || currentProgress < 0) {
+                alert('Please enter a valid current progress.');
+                return;
+            }
+
+          
+            let progressPercentage = (currentProgress / goalAmount) * 100;
+            progressPercentage = Math.min(progressPercentage, 100);  
+
+           
+            document.getElementById('progress').style.width = progressPercentage + '%';
+            updateProgressText();
+
+            
+            if (progressPercentage >= 100) {
+                goalAchieved();
+            }
+        }
+
+        
+        function updateProgressText() {
+            const progressText = document.getElementById('progressText');
+            if (goalAmount > 0) {
+                progressText.textContent = `Progress: ${currentProgress} / ${goalAmount} (${((currentProgress / goalAmount) * 100).toFixed(2)}%)`;
+            }
+        }
+
+        // Display goal achievement
+        function goalAchieved() {
+            document.getElementById('goalAchievedSection').style.display = 'block';
+            document.getElementById('goalAchievedText').textContent = `You have successfully achieved your goal of ${goalType}: ${goalAmount}! Keep up the great work!`;
+        }
+    </script>
+</body>
+</html>

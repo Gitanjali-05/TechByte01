@@ -120,14 +120,15 @@
         <h3>CHOOSE YOUR SPORTS</h3>
         <div class="sports-buttons">
             <button onclick="selectSport('Cricket')">Cricket</button>
-            <button onclick="selectSport('Football')" onclick="football">Football</button>
+            <button onclick="football()">Football</button>
             <button onclick="selectSport('Hockey')">Hockey</button>
             <button onclick="selectSport('Others')">Others</button>
         </div>
         <h3>HOW ARE YOU INVOLVED IN SPORTS?</h3>
         <div class="involvement-buttons">
             <button onclick="selectInvolvement('Amateur')">Amateur</button>
-            <button onclick="selectInvolvement('Professional')">Professional</button>
+            
+            <a href="athlete.html" ><div class="button">Professional</div></a>
         </div>
         <div class="action-buttons">
             <button class="mentorship" onclick="findMentorship()">Find Mentorship</button>
@@ -136,25 +137,13 @@
     </div>
 
     <script>
-        function selectSport(sport) {
-            alert('You selected: ' + sport);
-        }
-
-        function selectInvolvement(involvement) {
-            alert('You are involved as: ' + involvement);
-        }
-
-        function findMentorship() {
-            alert('Searching for mentorship...');
-        }
-
-        function goForAppTraining() {
-            alert('Redirecting to app-based training...');
-        }
+        
         function football(){
-           windows.location.href="football.html";
+            console.log("wait")
+           window.location.href="football.html";
            window.open("football.html"); 
         }
     </script>
+    
 </body>
 </html>
